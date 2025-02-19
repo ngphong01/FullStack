@@ -100,12 +100,11 @@
             font-weight: 600;
         }
 
-        /* 1. Gradient động */
         .gradient-bg {
             position: absolute;
             width: 100%;
             height: 100%;
-            background: linear-gradient(-45deg, #0ef, #1f293a, #2c4766, #0ef);
+            background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
             background-size: 400% 400%;
             animation: gradient 5s infinite linear;
             z-index: -1;
@@ -125,7 +124,6 @@
             }
         }
 
-        /* 2. Hiệu ứng sóng */
         .waves {
             position: absolute;
             width: 100%;
@@ -146,12 +144,10 @@
             }
         }
 
-        /* 3. Glow effect khi nhập */
         input:focus {
             box-shadow: 0 0 10px #0ef;
         }
 
-        /* 4. Particles Animation */
         .particles {
             position: absolute;
             width: 100%;
@@ -163,7 +159,7 @@
             position: absolute;
             width: 6px;
             height: 6px;
-            background: #0ef;
+            background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
             border-radius: 50%;
             animation: float 4s infinite linear;
         }
@@ -192,34 +188,34 @@
     </div>
 
     <div class="signup-box">
-    <h2>Đăng Ký</h2>
-    <form action="#">
-        <div class="input-box">
-          <input type="text" placeholder=" " required>
-          <label>Họ</label>
-        </div>
-        <div class="input-box">
-          <input type="text" placeholder=" " required>
-          <label>Tên</label>
-        </div>
-      </div>
-      <div class="input-box">
-        <input type="email" placeholder=" " required>
-        <label>Email</label>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder=" " required>
-        <label>Mật khẩu</label>
-      </div>
-      <div class="input-box">
-        <input type="password" placeholder=" " required>
-        <label>Nhập Lại Mật khẩu</label>
-      </div>
-      <button type="submit" class="btn">Đăng Ký</button>
-      <div class="login-link">
-        <a href="#">Đã có tài khoản? Đăng Nhập</a>
-      </div>
-    </form>
-  </div>
+        <h2>Đăng Ký</h2>
+        <form action="#">
+            <div class="input-box">
+                <input type="text" placeholder=" " required>
+                <label>Họ</label>
+            </div>
+            <div class="input-box">
+                <input type="text" placeholder=" " required>
+                <label>Tên</label>
+            </div>
+            <div class="input-box">
+                <input type="email" placeholder=" " required>
+                <label>Email</label>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder=" " required>
+                <label>Mật khẩu</label>
+            </div>
+            <div class="input-box">
+                <input type="password" placeholder=" " required>
+                <label>Nhập Lại Mật khẩu</label>
+            </div>
+            <button type="submit" class="btn">Đăng Ký</button>
+            <div class="login-link">
+                <a href="#">Đã có tài khoản? Đăng Nhập</a>
+            </div>
+        </form>
+    </div>
 </body>
+
 </html>
