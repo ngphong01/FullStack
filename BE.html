@@ -2,229 +2,314 @@
 <html lang="vi">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng Nhập</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
-        }
+    body {
+      min-height: 100vh;
+      background: linear-gradient(45deg, #12c2e9, #c471ed, #f64f59);
+      font-family: 'Arial', sans-serif;
+    }
 
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: #1f293a;
-        }
+    .sidebar {
+      width: 25%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(15px);
+      border-right: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 20px;
+      transition: all 0.3s ease;
+      z-index: 1000;
+    }
 
-        .container {
-            position: relative;
-            width: 256px;
-            height: 256px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    .sidebar a {
+      display: block;
+      color: rgba(255, 255, 255, 0.9);
+      padding: 15px;
+      text-decoration: none;
+      border-radius: 8px;
+      margin: 10px 0;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .container span {
-            position: absolute;
-            left: 0;
-            width: 32px;
-            height: 6px;
-            background: #2c4766;
-            border-radius: 8px;
-            transform-origin: 128px;
-            transform: scale(2.2) rotate(calc(var(--i) * (360deg / 50)));
-            animation: blink 3s linear infinite;
-            animation-delay: calc(var(--i) * (3s / 50));
-        }
+    .sidebar a:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: translateX(10px);
+    }
 
-        @keyframes blink {
-            0% {
-                background: #0ef;
-            }
+    .sidebar a::before {
+      content: '';
+      position: absolute;
+      left: -10px;
+      top: 0;
+      height: 100%;
+      width: 3px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+      opacity: 0;
+    }
 
-            25% {
-                background: #2c4766;
-            }
-        }
+    .sidebar a:hover::before {
+      opacity: 1;
+      left: 0;
+    }
 
-        .login-box {
-            position: absolute;
-            width: 400px;
-        }
+    nav {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.25), rgba(255, 255, 255, 0.1));
+      backdrop-filter: blur(10px) saturate(150%);
+      padding: 1.5rem;
+      position: fixed;
+      width: 70%;
+      left: 50%;
+      transform: translate(-50%);
+      top: 2rem;
+      border-radius: 15px;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1),
+        inset 0 4px 8px rgba(255, 255, 255, 0.2);
+      animation: slideIn 0.5s ease-out;
+      margin-left: 15%;
+      z-index: 999;
+    }
 
-        form {
-            width: 100%;
-            padding: 0 50px;
-        }
+    ul {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      gap: 2.5rem;
+      margin: 0;
+      padding: 0;
+    }
 
-        h2 {
-            font-size: 2em;
-            color: #0ef;
-            text-align: center;
-        }
+    li a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.9);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
 
-        .input-box {
-            position: relative;
-            margin: 25px 0;
-        }
+    li a:hover {
+      color: #fff;
+      transform: translateY(-2px);
+      text-shadow: 0 2px 8px rgba(255, 255, 255, 0.4);
+    }
 
-        input {
-            width: 100%;
-            padding: 10px 20px;
-            background: transparent;
-            border: 2px solid #2c4766;
-            outline: none;
-            border-radius: 40px;
-            font-size: 1em;
-            color: #fff;
-            transition: .5s ease;
-        }
+    li a::before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 0;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.8);
+      transition: all 0.3s ease;
+    }
 
-        input:focus {
-            border-color: #0ef;
-        }
+    li a:hover::before {
+      width: 100%;
+      left: 0;
+    }
 
-        label {
-            position: absolute;
-            top: 50%;
-            left: 20px;
-            transform: translateY(-50%);
-            font-size: 1em;
-            color: #fff;
-            pointer-events: none;
-            transition: .5s ease;
-            background: #1f293a;
-            padding: 0 6px;
-        }
+    .gallery-container {
+      margin-top: 100px;
+      padding: 2rem;
+      margin-left: 25%;
+    }
 
-        input:focus~label,
-        input:not(:placeholder-shown)~label {
-            top: -10px;
-            left: 15px;
-            font-size: 0.85em;
-            color: #0ef;
-        }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+      padding: 1rem;
+    }
 
-        .forgot-pass {
-            text-align: center;
-        }
+    .gallery-card {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
 
-        .forgot-pass a {
-            font-size: .85em;
-            color: #fff;
-            text-decoration: none;
-        }
+    .gallery-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
 
-        .btn {
-            width: 100%;
-            height: 45px;
-            background: #0ef;
-            border: none;
-            outline: none;
-            border-radius: 40px;
-            cursor: pointer;
-            font-size: 1em;
-            color: #1f293a;
-            font-weight: 600;
-        }
+    .gallery-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
 
-        .signup-link {
-            text-align: center;
-            margin-top: 10px;
-        }
+    .gallery-card:hover .gallery-image {
+      transform: scale(1.05);
+    }
 
-        .signup-link a {
-            font-size: .9em;
-            color: #0ef;
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+    .card-content {
+      padding: 1rem;
+      color: white;
+    }
+
+    .card-title {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      color: rgba(255, 255, 255, 0.9);
+    }
+
+    .card-description {
+      font-size: 0.9rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translate(-50%, -20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sidebar {
+        width: 60%;
+        left: -60%;
+      }
+
+      .sidebar.active {
+        left: 0;
+      }
+
+      nav {
+        width: 90%;
+        margin-left: 0;
+      }
+
+      ul {
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .gallery-container {
+        margin-left: 0;
+        padding: 1rem;
+        margin-top: 120px;
+      }
+
+      .gallery-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="login-box">
-            <h2>Đăng Nhập</h2>
-            <form action="#">
-                <div class="input-box">
-                    <input type="email" placeholder=" " required>
-                    <label>Email</label>
-                </div>
-                <div class="input-box">
-                    <input type="password" placeholder=" " required>
-                    <label>Password</label>
-                </div>
-                <div class="forgot-pass">
-                    <a href="#">Quên mật khẩu?</a>
-                </div>
-                <button type="submit" class="btn">Đăng Nhập</button>
-                <div class="signup-link">
-                    <a href="#">Signup</a>
-                </div>
-            </form>
+  <div class="sidebar">
+    <a onclick="showProducts('samsung')">Samsung</a>
+    <a onclick="showProducts('xiaomi')">Xiaomi</a>
+    <a onclick="showProducts('oppo')">Oppo</a>
+    <a onclick="showProducts('vivo')">Vivo</a>
+    <a onclick="showProducts('honor')">Honor</a>
+    <a onclick="showProducts('realme')">Realme</a>
+    <a onclick="showProducts('nokia')">Nokia</a>
+    <a onclick="showProducts('tcl')">TCL</a>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="#" class="active">Trang Chủ</a></li>
+      <li><a href="#">Giới Thiệu</a></li>
+      <li><a href="#">Dịch Vụ</a></li>
+      <li><a href="#">Sản Phẩm</a></li>
+      <li><a href="#">Liên Hệ</a></li>
+      <li><a href="register.html">Đăng Nhập</a></li>
+      <li><a href="register2.html">Đăng Ký</a></li>
+    </ul>
+  </nav>
+  <div class="gallery-container">
+    <div class="gallery-grid">
+      <div class="gallery-card">
+        <img src="../ss s25.jpg" class="gallery-image" alt="Điện thoại 1">
+        <div class="card-content">
+          <h3 class="card-title">Samsung Galaxy S25</h3>
+          <p class="card-description">Thiết kế sang trọng, hiệu năng đỉnh cao</p>
         </div>
-        <span style="--i:0;"></span>
-        <span style="--i:1;"></span>
-        <span style="--i:2;"></span>
-        <span style="--i:3;"></span>
-        <span style="--i:4;"></span>
-        <span style="--i:5;"></span>
-        <span style="--i:6;"></span>
-        <span style="--i:7;"></span>
-        <span style="--i:8;"></span>
-        <span style="--i:9;"></span>
-        <span style="--i:10;"></span>
-        <span style="--i:11;"></span>
-        <span style="--i:12;"></span>
-        <span style="--i:13;"></span>
-        <span style="--i:14;"></span>
-        <span style="--i:15;"></span>
-        <span style="--i:16;"></span>
-        <span style="--i:17;"></span>
-        <span style="--i:18;"></span>
-        <span style="--i:19;"></span>
-        <span style="--i:20;"></span>
-        <span style="--i:21;"></span>
-        <span style="--i:22;"></span>
-        <span style="--i:23;"></span>
-        <span style="--i:24;"></span>
-        <span style="--i:25;"></span>
-        <span style="--i:26;"></span>
-        <span style="--i:27;"></span>
-        <span style="--i:28;"></span>
-        <span style="--i:29;"></span>
-        <span style="--i:30;"></span>
-        <span style="--i:31;"></span>
-        <span style="--i:32;"></span>
-        <span style="--i:33;"></span>
-        <span style="--i:34;"></span>
-        <span style="--i:35;"></span>
-        <span style="--i:36;"></span>
-        <span style="--i:37;"></span>
-        <span style="--i:38;"></span>
-        <span style="--i:39;"></span>
-        <span style="--i:40;"></span>
-        <span style="--i:41;"></span>
-        <span style="--i:42;"></span>
-        <span style="--i:43;"></span>
-        <span style="--i:44;"></span>
-        <span style="--i:45;"></span>
-        <span style="--i:46;"></span>
-        <span style="--i:47;"></span>
-        <span style="--i:48;"></span>
-        <span style="--i:49;"></span>
-        <span style="--i:50;"></span>
+      </div>
+
+      <div class="gallery-card">
+        <img src="../14-pror.webp" class="gallery-image" alt="Điện thoại 2">
+        <div class="card-content">
+          <h3 class="card-title">Xiaomi 14 Pro</h3>
+          <p class="card-description">Camera ấn tượng, pin trâu cả ngày</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="../oppo f6c2.jpg" class="gallery-image" alt="Điện thoại 3">
+        <div class="card-content">
+          <h3 class="card-title">Oppo Find X6</h3>
+          <p class="card-description">Màn hình linh hoạt, thiết kế độc đáo</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="../galaxy-z-fold53.jpg" class="gallery-image" alt="Điện thoại 4">
+        <div class="card-content">
+          <h3 class="card-title">Samsung Fold 5</h3>
+          <p class="card-description">Công nghệ màn hình gập đột phá</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="../Xiaomi Mix Fold 3r.webp" class="gallery-image" alt="Điện thoại 5">
+        <div class="card-content">
+          <h3 class="card-title">Xiaomi Mix Fold 3</h3>
+          <p class="card-description">Hiệu năng hàng đầu, giá cả hợp lý</p>
+        </div>
+      </div>
+
+      <div class="gallery-card">
+        <img src="../oppo-reno10.webp" class="gallery-image" alt="Điện thoại 6">
+        <div class="card-content">
+          <h3 class="card-title">Oppo Reno 10</h3>
+          <p class="card-description">Thiết kế mỏng nhẹ, màu sắc trẻ trung</p>
+        </div>
+      </div>
     </div>
+  </div>
+  <script>
+    function showProducts(brand) {
+      const sections = document.querySelectorAll('.product-section');
+      sections.forEach(section => section.style.display = 'none');
+
+      const selectedSection = document.getElementById(brand);
+      if (selectedSection) {
+        selectedSection.style.display = 'block';
+      }
+    }
+  </script>
 </body>
 
 </html>
